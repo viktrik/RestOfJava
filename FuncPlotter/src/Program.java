@@ -14,7 +14,7 @@ public class Program {
         canvas.setRange(-360, -240, 360, 240);
         canvas.open();
 
-        // Draw a diagonal of red points on the canvas
+        // Draw a short red diagonal on the canvas
         canvas.pause();
         canvas.setColor(Color.red);
         for (int i = 0; i < 100; i++) {
