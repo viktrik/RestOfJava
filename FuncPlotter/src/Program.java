@@ -17,12 +17,14 @@ public class Program {
         // Draw a short red diagonal on the canvas
         canvas.pause();
         canvas.setColor(Color.red);
+        MyFunction fSin = (i)->{return (int)(200 * Math.sin(Math.PI * i/360));};
+        
         for (int i = 0; i < 100; i++) {
-            canvas.plot(i, i);
+            canvas.plot(i, fSin.calcY(i));
         }
 
         // Pause and close the canvas then terminate the program.
         canvas.pause();
         canvas.close();
+        }
     }
-}
