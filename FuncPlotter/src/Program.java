@@ -17,23 +17,75 @@ public class Program {
         // Draw a short red diagonal on the canvas
         canvas.pause();
         canvas.setColor(Color.red);
-        MyFunction fSin = (i)->{return (int)(200 * Math.sin(Math.PI * i/360));};
-        MyFunction quadratic = (i)->{return (int)((i-200) * (i + 200) / (250));};
-        MyFunction log = (i) -> {return (int) (20 * Math.log(i));};
-        MyFunction cubic = (i) -> {return (int) ((Math.pow(i,  3) / 200000));};
         
-        plotFunctions(fSin);
-        plotFunctions(quadratic);
-        plotFunctions(log);
-        plotFunctions(cubic);
+
+        
+       
+        MyFunction sin = new MyFunction() {
+        	public int calcY(int x) {
+        		return (int)(200 * Math.sin(Math.PI * x/360));
+        	}
+        	
+        	public Color getColor() {
+        		return Color.MAGENTA;
+        	}
+        };
+        
+        MyFunction quadratic = new MyFunction() {
+        	public int calcY(int x) {
+        		return (int)((x-200) * (x + 200) / (250));
+        	}
+        	
+        	public Color getColor() {
+        		return Color.MAGENTA;
+        	}
+        };
+        
+        MyFunction log = new MyFunction() {
+        	public int calcY(int x) {
+        		return (int)(20 * Math.log(x));
+        	}
+        	
+        	public Color getColor() {
+        		return Color.MAGENTA;
+        	}
+        };
+        
+        MyFunction cubic = new MyFunction() {
+        	public int calcY(int x) {
+        		return (int)((Math.pow(x,  3) / 200000));
+        	}
+        	
+        	public Color getColor() {
+        		return Color.MAGENTA;
+        	}
+        };
+        
+        MyFunction stepFunction = new MyFunction() {
+        	public int calcY(int x) {
+        		return (x < -100) ? (-100) : (x > 100 ? (100) : (x));
+        	}
+        	
+        	public Color getColor() {
+        		return Color.MAGENTA;
+        	}
+        };
+        
+        
+        
+        plotFunctions(sin, quadratic, log, cubic, stepFunction);
+        
         // Pause and close the canvas then terminate the program.
         canvas.pause();
         canvas.close();
         }
     
-    public static void plotFunctions(MyFunction x) {
-    	for (int i = -360; i < 360; i++) {
-    		canvas.plot(i,  x.calcY(i));
+    public static void plotFunctions(MyFunction... x) {
+    	for (int y = 0; y < x.length; y++) {
+    		canvas.setColor(x[y].getColor());
+    		for (int i = -360; i < 360; i++) {
+    			canvas.plot(i,  x[y].calcY(i));
+    		}
     	}
     }
 }
