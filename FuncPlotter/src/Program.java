@@ -18,13 +18,22 @@ public class Program {
         canvas.pause();
         canvas.setColor(Color.red);
         MyFunction fSin = (i)->{return (int)(200 * Math.sin(Math.PI * i/360));};
+        MyFunction quadratic = (i)->{return (int)((i-200) * (i + 200) / (250));};
+        MyFunction log = (i) -> {return (int) (20 * Math.log(i));};
+        MyFunction cubic = (i) -> {return (int) ((Math.pow(i,  3) / 200000));};
         
-        for (int i = 0; i < 100; i++) {
-            canvas.plot(i, fSin.calcY(i));
-        }
-
+        plotFunctions(fSin);
+        plotFunctions(quadratic);
+        plotFunctions(log);
+        plotFunctions(cubic);
         // Pause and close the canvas then terminate the program.
         canvas.pause();
         canvas.close();
         }
+    
+    public static void plotFunctions(MyFunction x) {
+    	for (int i = -360; i < 360; i++) {
+    		canvas.plot(i,  x.calcY(i));
+    	}
     }
+}
